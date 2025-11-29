@@ -26,7 +26,7 @@ jobs:
       - name: Build website
         run: npm run build
   deploy:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
