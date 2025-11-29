@@ -1,6 +1,9 @@
 name: Deploy website
 on:
   push:
+    tags:
+      - 'v*.*.*'
+
     branches:
       - main
 jobs:
@@ -26,7 +29,7 @@ jobs:
       - name: Build website
         run: npm run build
   deploy:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
